@@ -24,10 +24,10 @@ import { db } from '../../db';
     </button>
     <div class="grid grid-cols-12 gap-x-5 w-full mx-6 py-3">
       <div class="md:col-span-4 col-span-full py-8">
-        <p class="md:text-5xl text-4xl">
+        <p class="md:text-5xl text-4xl font-semibold">
           {{data()?.inputName}}
         </p>
-        <p class="md:text-xl text-lg">
+        <p class="md:text-xl text-lg mt-3">
           {{data()?.description}}
         </p>
       </div>
