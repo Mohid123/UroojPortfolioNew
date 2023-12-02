@@ -35,7 +35,7 @@ import {
         <input matInput [(ngModel)]="data.inputName">
       </mat-form-field>
       <mat-form-field class="w-full">
-        <mat-label>Description</mat-label>
+        <mat-label>{{data?.secondField || 'Description'}}</mat-label>
         <textarea rows="9" matInput [(ngModel)]="data.description"></textarea>
       </mat-form-field>
     </div>

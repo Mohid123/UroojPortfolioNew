@@ -15,10 +15,10 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     NgOptimizedImage
   ],
   template: `
-  <mat-toolbar color="warn">
+  <mat-toolbar color="warn" class="fixed top-0 left-0 z-20">
     <mat-toolbar-row>
       <div class="flex flex-col">
-        <img matTooltip="Ursa Minor" ngSrc="../../assets/ursa-minor-bg.gif" width="80" height="80">
+        <img matTooltip="Ursa Minor" ngSrc="../../assets/ursa-minor-bg.gif" width="80" height="80" priority>
       </div>
       <!-- <span class="example-spacer"></span>
       <div class="flex justify-center">
