@@ -12,9 +12,9 @@ import { DomSanitizer } from '@angular/platform-browser';
     MatIconModule
   ],
   template: `
-  <h3 class="text-5xl font-semibold text-center text-white mb-5">Public Pages</h3>
-  <div class="flex justify-center gap-x-5">
-    <div class="backdrop-blur-xl bg-[#34ABFF]/30 px-5 py-4 rounded-xl w-96 flex justify-center items-center flex-col">
+  <h3 class="lg:text-5xl text-4xl font-semibold text-center text-white mb-5">Public Pages</h3>
+  <div class="flex justify-center lg:flex-row flex-col gap-5">
+    <div class="backdrop-blur-xl bg-[#34ABFF]/30 px-5 py-4 rounded-xl lg:w-96 w-full flex justify-center items-center flex-col">
       <div class="w-20 h-20 rounded-full border-4 border-[#34ABFF]">
         <img src="../../assets/inf_logo.jpg" alt="inf_logo" class="object-contain w-full h-full rounded-full">
       </div>
@@ -27,7 +27,7 @@ import { DomSanitizer } from '@angular/platform-browser';
         understanding of the Cosmos!!
       </p>
     </div>
-    <div class="backdrop-blur-xl bg-[#B8130D]/30 px-5 py-4 rounded-xl w-96 flex justify-center items-center flex-col">
+    <div class="backdrop-blur-xl bg-[#B8130D]/30 px-5 py-4 rounded-xl lg:w-96 w-full flex justify-center items-center flex-col">
       <div class="w-20 h-20 rounded-full border-4 border-[#B8130D]">
         <img src="../../assets/inf_logo.jpg" alt="inf_logo" class="object-contain w-full h-full rounded-full">
       </div>

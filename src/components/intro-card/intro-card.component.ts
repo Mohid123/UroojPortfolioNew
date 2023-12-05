@@ -30,10 +30,8 @@ import { db } from '../../db';
         <mat-icon>edit</mat-icon>
       </button>
     </div>
-    <div class="absolute top-40 right-[40%]">
+    <div class="absolute top-40 lg:left-[60%] md:left-10 -left-16">
       <div class="night">
-        <div class="star"></div>
-        <div class="star"></div>
         <div class="star"></div>
         <div class="star"></div>
         <div class="star"></div>

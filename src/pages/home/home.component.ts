@@ -9,6 +9,7 @@ import { MatIconRegistry } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { DomSanitizer } from '@angular/platform-browser';
 import { FooterComponent } from '../../components/footer/footer.component';
+import { BlogComponent } from '../../components/blog/blog.component';
 
 @Component({
   selector: 'app-home',
@@ -20,19 +21,23 @@ import { FooterComponent } from '../../components/footer/footer.component';
     QuoteCardComponent,
     PublicPagesComponent,
     HttpClientModule,
-    FooterComponent
+    FooterComponent,
+    BlogComponent
   ],
   providers: [MatIconRegistry],
   template: `
   <app-header></app-header>
-  <section class="mx-12 mt-52">
+  <section class="lg:mx-12 mx-2 mt-52">
     <app-intro-card></app-intro-card>
   </section>
   <section class="mt-64 py-20">
-    <app-quote-card data-aos="zoom-in"></app-quote-card>
+    <app-quote-card></app-quote-card>
   </section>
-  <section class="mt-8">
+  <section class="mt-8 lg:mx-12 mx-2">
     <app-public-pages></app-public-pages>
+  </section>
+  <section class="mt-14 lg:mx-12 mx-2">
+    <app-blog></app-blog>
   </section>
   <app-footer></app-footer>
   `,

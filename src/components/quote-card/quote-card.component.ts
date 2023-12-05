@@ -22,7 +22,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     </button>
     <div class="grid grid-cols-12 gap-x-5 w-full mx-6 py-3">
       <div class="md:col-span-6 col-span-full py-8 lg:flex lg:flex-col lg:justify-center lg:items-center">
-        <q class="text-3xl">
+        <q class="lg:text-3xl text-xl">
           {{data()?.quote || 'A professional writer is an amateur who didnt quit'}}
         </q>
         <i class="md:text-xl text-lg mt-3 block">
@@ -30,7 +30,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
         </i>
       </div>
       <div class="md:col-span-6 col-span-full md:justify-self-end flex items-center">
-        <img ngSrc="../../assets/quote.jpg" width="600" height="400" alt="writer" priority class="object-contain">
+        <img ngSrc="../../assets/quote.webp" width="600" height="400" alt="writer" priority class="object-contain">
       </div>
     </div>
   </div>

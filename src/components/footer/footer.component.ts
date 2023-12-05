@@ -10,7 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatIconModule
   ],
   template: `
-  <div class="mt-14 border-t border-white w-full pt-4 text-center text-white">
+  <div class="mt-14 border-t border-white w-full pt-4 text-center text-white bg-[#F44336]">
       <p class="text-xl font-semibold text-white">Urooj Murtaza.</p>
       <p class="text-sm font-semibold text-white">Data Scientist & Astronomer</p>
       <div class="flex justify-center gap-x-3 mt-4">
