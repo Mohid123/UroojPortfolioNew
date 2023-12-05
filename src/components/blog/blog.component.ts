@@ -15,7 +15,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
         <img
           [src]="blog.img"
           alt="blog_img"
-          class="aspect-video object-cover h-full"
+          class="aspect-video object-cover lg:h-full h-[500px]"
         >
         <div class="absolute top-2">
           <p class="text-white font-semibold backdrop-blur-lg bg-black/50 px-3 py-1">
@@ -78,8 +78,7 @@ export class BlogComponent {
       img: 'https://startuppakistan.com.pk/wp-content/uploads/2022/01/word-image-135.jpeg',
       source: 'https://blogpakistan.pk/prices/how-to-send-money-from-jazz-cash-to-easy-paisa/',
       summary: `Introduced in 2012, JazzCash has now become the largest digital wallet in the country. It has millions of
-      active customers who benefit from its features. For funds transfer, the JazzCash service allows you to send money to bank
-      accounts, CNIC, non-JazzCash users, and mobile accounts. If you want to know how to send money from JazzCash to Easypaisa,
+      active customers who benefit from its features. If you want to know how to send money from JazzCash to Easypaisa,
       we are here with all the methods and details.`
     },
     {
@@ -89,16 +88,14 @@ export class BlogComponent {
       source: 'https://blogpakistan.pk/hajj-applications-are-open-in-pakistan-for-hajj-2022/',
       summary: `The Government of Pakistan has announced the opening of Hajj Applications for the year 2022. The applications
       will remain open from May 1 to May 13. A total of 81,132 pilgrims will get the chance to perform Hajj from Pakistan with 40%
-      from government schemes and 60% from private. Applicants will have to deposit PKR 50,000 token money with their applications
-      to scheduled banks.`
+      from government schemes and 60% from private.`
     },
     {
       id: 6,
       title: '30 Best Places to Get Iftar Buffet in Islamabad - 2022',
       img: 'https://blogpakistan.pk/wp-content/uploads/2022/05/Best-burgers-in-Islamabad1-1024x400.jpg',
       source: 'https://blogpakistan.pk/iftar-buffet-in-islamabad/',
-      summary: `Ramadan is one of the most loved and celebrated months in the Islamic calendar. Every day of Ramadan is special
-      with Sehr and Iftar preparations making every day memorable. While home food is comfortable, there are multiple places you
+      summary: `Ramadan is one of the most loved and celebrated months in the Islamic calendar. While home food is comfortable, there are multiple places you
       can visit to have the best Iftar experience. If you live in Islamabad or are in the city for a few days, here are some
       restaurants and cafes for the best Iftar Buffet in Islamabad.`
     },
