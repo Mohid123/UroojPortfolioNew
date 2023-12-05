@@ -6,6 +6,7 @@ import { DialogComponent } from '../dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { db } from '../../db';
+import { Firestore, addDoc, collection, collectionData, doc, updateDoc } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-intro-card',
@@ -46,17 +47,35 @@ import { db } from '../../db';
 })
 export class IntroCardComponent {
   public destroyRef = inject(DestroyRef);
-  inputName!: string;
-  description!: string;
-  data: any = signal({})
+  data: any = signal({});
+  firestore: Firestore = inject(Firestore);
 
   constructor(public dialog: MatDialog) {
     this.fetchIntroSection();
   }
 
+  fetchFromFirestore() {
+    const itemCollection = collection(this.firestore, 'IntroSection');
+    let item$ = collectionData(itemCollection);
+    item$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(async (val) => {
+      this.data.set(val[0]);
+      let data = {
+        id: 1,
+        inputName: val[0]['inputName'],
+        description: val[0]['description']
+      }
+      await db.addData(data)
+    })
+  }
+
   async fetchIntroSection() {
     let dataFromDB = await db.fetchIntroData(1);
-    this.data.set(dataFromDB);
+    if(dataFromDB) {
+      this.data.set(dataFromDB);
+    }
+    else {
+      this.fetchFromFirestore()
+    }
   }
 
   openDialog(inputName: string, description: string) {
@@ -81,9 +100,14 @@ export class IntroCardComponent {
         if(dataExists) {
           await db.updateData(data).then((res: any) => {
             if(res) {
-              this.fetchIntroSection()
+              this.fetchIntroSection();
             }
-          })
+          });
+          const ref = doc(this.firestore, "IntroSection", 'h2A8EhjBHjvIk5qUCkgJ');
+          await updateDoc(ref, {
+            inputName: result?.inputName,
+            description: result?.description
+          });
         }
         else {
           await db.addData(data).then((res: any) => {

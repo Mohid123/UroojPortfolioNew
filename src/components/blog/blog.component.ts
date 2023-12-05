@@ -9,7 +9,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   ],
   template: `
   <h5 class="lg:text-5xl text-4xl font-semibold text-center text-white mb-5">My Blog</h5>
-  <div class="lg:columns-3 columns-1 gap-6">
+  <div class="lg:columns-3 md:columns-2 columns-1 gap-6">
     @for (blog of blogs; track blog.id; let index = $index) {
       <div class="relative mb-3 aspect-square">
         <img

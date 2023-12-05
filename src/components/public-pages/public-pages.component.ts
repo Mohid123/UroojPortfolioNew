@@ -1,8 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
-import { DomSanitizer } from '@angular/platform-browser';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-public-pages',

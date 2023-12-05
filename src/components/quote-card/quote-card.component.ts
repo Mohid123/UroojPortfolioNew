@@ -5,6 +5,7 @@ import { db } from '../../db';
 import { DialogComponent } from '../dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Firestore, collection, collectionData, doc, updateDoc } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-quote-card',
@@ -23,10 +24,10 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     <div class="grid grid-cols-12 gap-x-5 w-full mx-6 py-3">
       <div class="md:col-span-6 col-span-full py-8 lg:flex lg:flex-col lg:justify-center lg:items-center">
         <q class="lg:text-3xl text-xl">
-          {{data()?.quote || 'A professional writer is an amateur who didnt quit'}}
+          {{data()?.quote}}
         </q>
         <i class="md:text-xl text-lg mt-3 block">
-          - {{data()?.writer || 'Richard Bach'}}
+          - {{data()?.writer}}
         </i>
       </div>
       <div class="md:col-span-6 col-span-full md:justify-self-end flex items-center">
@@ -44,11 +45,31 @@ export class QuoteCardComponent {
   }
 
   public destroyRef = inject(DestroyRef);
-  data: any = signal({})
+  data: any = signal({});
+  firestore: Firestore = inject(Firestore);
 
   async fetchQuoteSection() {
     let dataFromDB = await db.fetchQuote(1);
-    this.data.set(dataFromDB);
+    if(dataFromDB) {
+      this.data.set(dataFromDB);
+    }
+    else {
+      this.fetchFromFirestore()
+    }
+  }
+
+  fetchFromFirestore() {
+    const itemCollection = collection(this.firestore, 'QuoteSection');
+    let item$ = collectionData(itemCollection);
+    item$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(async (val) => {
+      this.data.set(val[0]);
+      let data = {
+        id: 2,
+        quote: val[0]['quote'],
+        writer: val[0]['writer']
+      }
+      await db.addQuote(data)
+    })
   }
 
   openDialog(inputName: string, description: string) {
@@ -74,9 +95,14 @@ export class QuoteCardComponent {
         if(dataExists) {
           await db.updateQuote(data).then((res: any) => {
             if(res) {
-              this.fetchQuoteSection()
+              this.fetchQuoteSection();
             }
-          })
+          });
+          const ref = doc(this.firestore, "QuoteSection", 'pdHrd56ulFF6ykknxAvN');
+          await updateDoc(ref, {
+            quote: result?.inputName,
+            writer: result?.description
+          });
         }
         else {
           await db.addQuote(data).then((res: any) => {
