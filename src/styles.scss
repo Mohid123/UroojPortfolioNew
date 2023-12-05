@@ -142,6 +142,26 @@ body {
   animation-delay: 1.8s;
 }
 
+.star:nth-child(6){
+  top: calc(50% - 150px);
+  left: calc(80% - 50px);
+  animation-delay: 2s;
+}
+
+.star:nth-child(6)::before, .star:nth-child(5)::after{
+  animation-delay: 2s;
+}
+
+.star:nth-child(7){
+  top: calc(50% - 180px);
+  left: calc(80% - 10px);
+  animation-delay: 2.2s;
+}
+
+.star:nth-child(7)::before, .star:nth-child(5)::after{
+  animation-delay: 2.2s;
+}
+
 .example-spacer {
   flex: 1 1 auto;
 }

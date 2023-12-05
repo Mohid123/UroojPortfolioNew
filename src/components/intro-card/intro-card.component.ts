@@ -18,7 +18,7 @@ import { db } from '../../db';
     DialogComponent
   ],
   template: `
-  <div class="h-auto text-white mt-28 bg-inherit flex flex-col justify-between relative w-full">
+  <div class="h-auto text-white mt-20 bg-inherit flex flex-col justify-between relative w-full">
     <div class="lg:w-[40%] w-full">
       <p class="lg:text-5xl text-3xl font-semibold">
         {{data()?.inputName}}
@@ -32,6 +32,8 @@ import { db } from '../../db';
     </div>
     <div class="absolute top-40 right-[40%]">
       <div class="night">
+        <div class="star"></div>
+        <div class="star"></div>
         <div class="star"></div>
         <div class="star"></div>
         <div class="star"></div>
