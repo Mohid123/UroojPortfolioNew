@@ -6,7 +6,7 @@ import { DialogComponent } from '../main-dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { db } from '../../db';
-import { Firestore, addDoc, collection, collectionData, doc, updateDoc } from '@angular/fire/firestore';
+import { Firestore, collection, collectionData, doc, updateDoc } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-intro-card',

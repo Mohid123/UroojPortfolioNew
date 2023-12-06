@@ -11,15 +11,25 @@ export interface QuoteSection {
   writer: string;
 }
 
+export interface PublicPageSection {
+  id: number;
+  title: string;
+  description: string;
+  img: string;
+  url: string
+}
+
 export class AppDB extends Dexie {
   introSectionData!: Table<IntroSection, number>;
   quoteSectionData!: Table<QuoteSection, number>;
+  publicSectionData!: Table<PublicPageSection, number>;
 
   constructor() {
     super('ngdexieliveQuery');
     this.version(3).stores({
       introSectionData: '++id, inputName, description',
       quoteSectionData: '++id, quote, writer',
+      publicSectionData: '++id, title, description, img, url'
     });
   }
 
@@ -84,6 +94,43 @@ export class AppDB extends Dexie {
         id: data?.id || 1,
         quote: data?.quote,
         writer: data?.writer
+      })
+      return updatedData
+    } catch (error) {
+      throw error
+    }
+  }
+
+  async fetchPublicPageData() {
+    try {
+      return await db.publicSectionData?.toArray();
+    } catch (error) {
+      throw error
+    }
+  }
+
+  async addPublicData(data: PublicPageSection): Promise<any> {
+    try {
+      const updatedData = await db.publicSectionData.add({
+        id: data?.id,
+        title: data?.title,
+        description: data?.description,
+        img: data?.img,
+        url: data?.url
+      })
+      return updatedData
+    } catch (error) {
+      throw error
+    }
+  }
+
+  async updatePublicData(data: PublicPageSection): Promise<any> {
+    try {
+      const updatedData = await db.publicSectionData.update(data?.id, {
+        title: data?.title,
+        description: data?.description,
+        img: data?.img,
+        url: data?.url
       })
       return updatedData
     } catch (error) {
