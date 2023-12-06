@@ -2,7 +2,7 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, DestroyRef, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { db } from '../../db';
-import { DialogComponent } from '../dialog/dialog.component';
+import { DialogComponent } from '../main-dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Firestore, collection, collectionData, doc, updateDoc } from '@angular/fire/firestore';
@@ -49,7 +49,7 @@ export class QuoteCardComponent {
   firestore: Firestore = inject(Firestore);
 
   async fetchQuoteSection() {
-    let dataFromDB = await db.fetchQuote(1);
+    let dataFromDB = await db.fetchQuote(2);
     if(dataFromDB) {
       this.data.set(dataFromDB);
     }
