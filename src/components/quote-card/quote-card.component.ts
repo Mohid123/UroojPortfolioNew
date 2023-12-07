@@ -49,7 +49,7 @@ export class QuoteCardComponent {
   firestore: Firestore = inject(Firestore);
 
   async fetchQuoteSection() {
-    let dataFromDB = await db.fetchQuote(2);
+    let dataFromDB = await db.fetchQuote(1);
     if(dataFromDB) {
       this.data.set(dataFromDB);
     }

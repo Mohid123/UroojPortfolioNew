@@ -91,7 +91,6 @@ export class AppDB extends Dexie {
   async updateQuote(data: QuoteSection): Promise<any> {
     try {
       const updatedData = await db.quoteSectionData.update(1, {
-        id: data?.id || 1,
         quote: data?.quote,
         writer: data?.writer
       })
