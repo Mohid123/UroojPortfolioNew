@@ -26,13 +26,13 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
           <a
             [href]="blog.source"
             target="_blank"
-            class="text-white font-semibold backdrop-blur-lg bg-black/70 px-3 py-1"
+            class="text-white font-semibold backdrop-blur-lg bg-black/70 px-3 py-1 rounded-xl"
           >
             Read Here!
           </a>
         </div>
         <div class="absolute bottom-0">
-          <p class="text-white font-semibold backdrop-blur-lg bg-black/50 px-3 py-1">
+          <p class="text-white backdrop-blur-lg bg-black/50 px-3 py-1 text-sm">
             {{blog.summary}}
           </p>
         </div>

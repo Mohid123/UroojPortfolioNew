@@ -11,4 +11,9 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'Portfolio';
+  constructor() {
+    // window.onload = (event) => {
+    //   console.log(document)
+    // }
+  }
 }
