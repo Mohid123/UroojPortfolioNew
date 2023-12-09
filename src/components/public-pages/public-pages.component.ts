@@ -85,7 +85,7 @@ export class PublicPagesComponent {
     const itemCollection = collection(this.firestore, 'PublicSection');
     let val = await getDocs(itemCollection);
     this.items.set(val.docs?.map(doc => doc.data()))
-    val.forEach(item => {
+    val.forEach(async item => {
       let data = {
         id: item.get('id'),
         title: item.get('title'),
@@ -94,7 +94,7 @@ export class PublicPagesComponent {
         url: item.get('url')
       }
       this.collectionID = item.id
-      db.addPublicData(data)
+      await db.addPublicData(data)
     })
   }
 

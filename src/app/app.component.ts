@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
+import { db } from '../db';
 
 @Component({
   selector: 'app-root',
@@ -12,8 +13,10 @@ import { RouterOutlet } from '@angular/router';
 export class AppComponent {
   title = 'Portfolio';
   constructor() {
-    // window.onload = (event) => {
-    //   console.log(document)
-    // }
+    window.onload = (event) => {
+      db.publicSectionData.clear()
+      db.introSectionData.clear()
+      db.quoteSectionData.clear()
+    }
   }
 }

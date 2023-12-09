@@ -21,7 +21,7 @@ import { Firestore, collection, collectionData, doc, updateDoc } from '@angular/
   template: `
   <div class="h-auto text-white mt-20 bg-inherit flex flex-col justify-between relative w-full">
     <div class="lg:w-[40%] w-full">
-      <p class="lg:text-5xl text-3xl font-semibold">
+      <p class="text-5xl font-semibold">
         {{data()?.inputName}}
       </p>
       <p class="text-xl mt-4">

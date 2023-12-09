@@ -22,8 +22,8 @@ import { Firestore, collection, collectionData, doc, updateDoc } from '@angular/
       <mat-icon class="p-4 rounded-full bg-gray-400 flex items-center justify-center">edit</mat-icon>
     </button>
     <div class="grid grid-cols-12 gap-x-5 w-full mx-6 py-3">
-      <div class="md:col-span-6 col-span-full py-8 lg:flex lg:flex-col lg:justify-center lg:items-center">
-        <q class="lg:text-3xl text-xl">
+      <div class="md:col-span-6 col-span-full py-8 flex flex-col justify-center items-center">
+        <q class="lg:text-3xl text-2xl">
           {{data()?.quote}}
         </q>
         <i class="md:text-xl text-lg mt-3 block">
@@ -64,7 +64,7 @@ export class QuoteCardComponent {
     item$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(async (val) => {
       this.data.set(val[0]);
       let data = {
-        id: 2,
+        id: 1,
         quote: val[0]['quote'],
         writer: val[0]['writer']
       }
