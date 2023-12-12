@@ -26,7 +26,7 @@ import {
     MatDialogTitle,
     MatDialogContent
   ],
-  template: `<h1 mat-dialog-title>Edit Section</h1>
+  template: `<h4 mat-dialog-title>Edit Section</h4>
   <div mat-dialog-content>
     <p>Choose what data appears in this section</p>
     <div class="w-full flex flex-col">

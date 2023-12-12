@@ -31,8 +31,11 @@ import { RouterModule } from '@angular/router';
         <button [routerLink]="['/home']" routerLinkActive="active" matTooltip="Home" mat-icon-button aria-label="Example icon-button with heart icon">
           <mat-icon>home</mat-icon>
         </button>
-        <button [routerLink]="['/projects']" routerLinkActive="active"  matTooltip="Projects" mat-icon-button aria-label="Example icon-button with share icon">
+        <button [routerLink]="['/projects']" routerLinkActive="active" matTooltip="Archive" mat-icon-button aria-label="Example icon-button with share icon">
           <mat-icon>folder_zip</mat-icon>
+        </button>
+        <button matTooltip="Resume" mat-icon-button aria-label="Example icon-button with share icon">
+          <mat-icon>description</mat-icon>
         </button>
         <!-- <button matTooltip="Featured Blogs & Articles" mat-icon-button aria-label="Example icon-button with share icon">
           <mat-icon>newspaper</mat-icon>

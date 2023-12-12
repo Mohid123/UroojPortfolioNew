@@ -21,7 +21,7 @@ import { GenericService } from '../../services/generic.service';
     MatDialogTitle,
     MatDialogContent
   ],
-  template: `<h1 mat-dialog-title>Edit Section</h1>
+  template: `<h4 mat-dialog-title>Edit Section</h4>
   <div mat-dialog-content>
     <div class="w-full flex flex-col">
       <mat-form-field class="w-full">

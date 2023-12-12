@@ -12,7 +12,8 @@ export interface QuoteSection {
 }
 
 export interface PublicPageSection {
-  id: number;
+  id: string;
+  uid: number;
   title: string;
   description: string;
   img: string;
@@ -29,7 +30,7 @@ export class AppDB extends Dexie {
     this.version(3).stores({
       introSectionData: '++id, inputName, description',
       quoteSectionData: '++id, quote, writer',
-      publicSectionData: '++id, title, description, img, url'
+      publicSectionData: '++uid, title, description, img, url'
     });
   }
 
@@ -112,6 +113,7 @@ export class AppDB extends Dexie {
     try {
       const updatedData = await db.publicSectionData.add({
         id: data?.id,
+        uid: data?.uid,
         title: data?.title,
         description: data?.description,
         img: data?.img,
@@ -125,7 +127,7 @@ export class AppDB extends Dexie {
 
   async updatePublicData(data: PublicPageSection): Promise<any> {
     try {
-      const updatedData = await db.publicSectionData.update(data?.id, {
+      const updatedData = await db.publicSectionData.update(data?.uid, {
         title: data?.title,
         description: data?.description,
         img: data?.img,

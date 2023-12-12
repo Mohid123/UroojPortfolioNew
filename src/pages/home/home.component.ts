@@ -33,11 +33,11 @@ import { BlogComponent } from '../../components/blog/blog.component';
   <section class="mt-64 py-20">
     <app-quote-card></app-quote-card>
   </section>
-  <section class="mt-8 lg:mx-12 mx-2">
-    <app-public-pages></app-public-pages>
-  </section>
   <section class="mt-14 lg:mx-12 mx-2">
     <app-blog></app-blog>
+  </section>
+  <section class="mt-14 lg:mx-12 mx-2">
+    <app-public-pages></app-public-pages>
   </section>
   <app-footer></app-footer>
   `,

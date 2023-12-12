@@ -13,10 +13,10 @@ import { db } from '../db';
 export class AppComponent {
   title = 'Portfolio';
   constructor() {
-    window.onload = (event) => {
-      db.publicSectionData.clear()
-      db.introSectionData.clear()
-      db.quoteSectionData.clear()
-    }
+    // window.onload = (event) => {
+    //   db.publicSectionData.clear()
+    //   db.introSectionData.clear()
+    //   db.quoteSectionData.clear()
+    // }
   }
 }
