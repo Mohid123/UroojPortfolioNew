@@ -15,7 +15,7 @@ import { SwPush, SwRegistrationOptions, SwUpdate } from '@angular/service-worker
 export class AppComponent {
   title = 'Portfolio';
   constructor(swUpdate: SwUpdate) {
-    const everySixHours$ = interval(12000);
+    const everySixHours$ = interval(6 * 60 * 60 * 1000);
     everySixHours$.pipe(take(1)).subscribe(async () => {
       try {
         swUpdate.activateUpdate().then(() => {
@@ -30,10 +30,5 @@ export class AppComponent {
         console.error('Failed to refresh:', err);
       }
     });
-    // window.onload = (event) => {
-    //   db.publicSectionData.clear()
-    //   db.introSectionData.clear()
-    //   db.quoteSectionData.clear()
-    // }
   }
 }
