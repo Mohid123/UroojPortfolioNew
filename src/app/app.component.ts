@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { db } from '../db';
+import { interval, take } from 'rxjs';
+import { SwPush, SwRegistrationOptions, SwUpdate } from '@angular/service-worker';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +14,22 @@ import { db } from '../db';
 })
 export class AppComponent {
   title = 'Portfolio';
-  constructor() {
+  constructor(swUpdate: SwUpdate) {
+    const everySixHours$ = interval(12000);
+    everySixHours$.pipe(take(1)).subscribe(async () => {
+      try {
+        swUpdate.activateUpdate().then(() => {
+          console.log('New version available. Refreshing...');
+          db.publicSectionData.clear()
+          db.introSectionData.clear()
+          db.quoteSectionData.clear()
+          document.location.reload();
+          console.log('Refresh after 12 seconds');
+        })
+      } catch (err) {
+        console.error('Failed to refresh:', err);
+      }
+    });
     // window.onload = (event) => {
     //   db.publicSectionData.clear()
     //   db.introSectionData.clear()

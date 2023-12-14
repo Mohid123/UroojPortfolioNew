@@ -18,7 +18,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   providers: [MatIconRegistry],
   template: `
   <app-header></app-header>
-  <h3 class="mt-24 lg:text-5xl text-4xl text-center text-white font-semibold">Projects</h3>
+  <h3 class="mt-24 lg:text-5xl text-4xl text-center text-white font-semibold">College Projects</h3>
   <div class="flex justify-center lg:flex-row flex-col gap-5 mt-6 lg:mx-10 mx-2">
     <div class="flex flex-col items-center justify-center bg-[#463C14] text-[#F9F6EE] px-4 rounded-xl">
       <div class="px-4 mt-3">
