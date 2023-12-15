@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { db } from '../db';
 import { interval, take } from 'rxjs';
-import { SwPush, SwRegistrationOptions, SwUpdate } from '@angular/service-worker';
+import { SwUpdate } from '@angular/service-worker';
 
 @Component({
   selector: 'app-root',

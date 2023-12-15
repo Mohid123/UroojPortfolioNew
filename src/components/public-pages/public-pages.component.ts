@@ -21,7 +21,7 @@ import { collection, doc, getDocs, updateDoc } from 'firebase/firestore';
   <div class="flex justify-center lg:flex-row flex-col gap-5">
     @for (item of items(); track item.id; let index = $index) {
       <div [ngClass]="index == 0 ? 'bg-[#34ABFF]/30' : 'bg-[#B8130D]/30'" class="backdrop-blur-xl px-5 py-4 rounded-xl lg:w-96 w-full flex justify-center items-center flex-col relative">
-        <button (click)="openDialog(item)" matTooltip="Edit card" mat-icon-button aria-label="Example icon-button with share icon" class="absolute -top-5 right-0">
+        <button *ngIf="gen.isLoggedIn()" (click)="openDialog(item)" matTooltip="Edit card" mat-icon-button aria-label="Example icon-button with share icon" class="absolute -top-5 right-0">
           <mat-icon class="p-4 rounded-full bg-gray-400 flex items-center justify-center">edit</mat-icon>
         </button>
         <div class="w-20 h-20 rounded-full border-4" [ngClass]="index == 0 ? 'border-[#34ABFF]' : 'border-[#B8130D]'">
@@ -55,7 +55,7 @@ export class PublicPagesComponent {
   items = signal<any>([]);
   collectionID!: string;
 
-  constructor(public dialog: MatDialog, private gen: GenericService) {
+  constructor(public dialog: MatDialog, public gen: GenericService) {
     this.fetchPublicSection();
     this.gen.emitFileEvent.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(val => {
       this.file = val;

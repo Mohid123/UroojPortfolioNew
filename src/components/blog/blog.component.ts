@@ -10,6 +10,7 @@ import { EditorDialogComponent } from '../editor-dialog/editor-dialog.component'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { EditorConfig } from '@ckeditor/ckeditor5-core';
+import { GenericService } from '../../services/generic.service';
 
 @Component({
   selector: 'app-blog',
@@ -22,13 +23,13 @@ import { EditorConfig } from '@ckeditor/ckeditor5-core';
   ],
   template: `
   <h5 class="lg:text-5xl text-4xl font-semibold text-center text-white mb-5">
-    My Projects <button (click)="openDialogAddOnly()"><mat-icon>add_circle</mat-icon></button>
+    My Projects <button *ngIf="gen.isLoggedIn()" (click)="openDialogAddOnly()"><mat-icon>add_circle</mat-icon></button>
   </h5>
   <!-- <ckeditor [editor]="Editor" [config]="editorConfig"></ckeditor> -->
   <div class="grid grid-cols-12 gap-6 text-white">
     @for (project of projects(); track project.id; let index = $index) {
       <div class="bg-[#1A2421] rounded-xl px-5 py-4 lg:col-span-4 md:col-span-6 col-span-full relative">
-        <button (click)="openDialog(project?.content, project?.id)" matTooltip="Edit card" mat-icon-button aria-label="Example icon-button with share icon" class="absolute -top-5 right-0 z-10">
+        <button *ngIf="gen.isLoggedIn()" (click)="openDialog(project?.content, project?.id)" matTooltip="Edit card" mat-icon-button aria-label="Example icon-button with share icon" class="absolute -top-5 right-0 z-10">
           <mat-icon class="p-4 rounded-full bg-gray-400 flex items-center justify-center">edit</mat-icon>
         </button>
         <mat-icon>verified</mat-icon>
@@ -75,7 +76,7 @@ export class BlogComponent {
   };
   public readMore: boolean = false;
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, public gen: GenericService) {
     this.fetchFromFirestore()
   }
 

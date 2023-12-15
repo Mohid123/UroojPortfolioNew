@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { db } from '../../db';
 import { Firestore, collection, collectionData, doc, updateDoc } from '@angular/fire/firestore';
+import { GenericService } from '../../services/generic.service';
 
 @Component({
   selector: 'app-intro-card',
@@ -27,7 +28,7 @@ import { Firestore, collection, collectionData, doc, updateDoc } from '@angular/
       <p class="text-xl mt-4">
         {{data()?.description}}
       </p>
-      <button (click)="openDialog(data()?.inputName, data()?.description)" matTooltip="Edit Section" mat-icon-button aria-label="Example icon-button with heart icon" class="absolute -top-2 right-0">
+      <button *ngIf="gen.isLoggedIn()" (click)="openDialog(data()?.inputName, data()?.description)" matTooltip="Edit Section" mat-icon-button aria-label="Example icon-button with heart icon" class="absolute -top-2 right-0">
         <mat-icon>edit</mat-icon>
       </button>
     </div>
@@ -50,7 +51,7 @@ export class IntroCardComponent {
   data: any = signal({});
   firestore: Firestore = inject(Firestore);
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, public gen: GenericService) {
     this.fetchIntroSection();
   }
 

@@ -6,6 +6,7 @@ import { DialogComponent } from '../main-dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Firestore, collection, collectionData, doc, updateDoc } from '@angular/fire/firestore';
+import { GenericService } from '../../services/generic.service';
 
 @Component({
   selector: 'app-quote-card',
@@ -18,7 +19,7 @@ import { Firestore, collection, collectionData, doc, updateDoc } from '@angular/
   ],
   template: `
   <div class="w-full h-auto text-white shadow-lg bg-[#463c14] flex items-center relative">
-    <button (click)="openDialog(data()?.quote, data()?.writer)" matTooltip="Edit section" mat-icon-button aria-label="Example icon-button with share icon" class="absolute -top-5 right-0">
+    <button *ngIf="gen.isLoggedIn()" (click)="openDialog(data()?.quote, data()?.writer)" matTooltip="Edit section" mat-icon-button aria-label="Example icon-button with share icon" class="absolute -top-5 right-0">
       <mat-icon class="p-4 rounded-full bg-gray-400 flex items-center justify-center">edit</mat-icon>
     </button>
     <div class="grid grid-cols-12 gap-x-5 w-full mx-6 py-3">
@@ -40,7 +41,7 @@ import { Firestore, collection, collectionData, doc, updateDoc } from '@angular/
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class QuoteCardComponent {
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, public gen: GenericService) {
     this.fetchQuoteSection();
   }
 
