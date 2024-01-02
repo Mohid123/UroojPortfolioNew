@@ -33,7 +33,7 @@ import { GenericService } from '../../services/generic.service';
           <mat-icon class="p-4 rounded-full bg-gray-400 flex items-center justify-center">edit</mat-icon>
         </button>
         <mat-icon>verified</mat-icon>
-        <div [ngClass]="readMore ? 'overflow-visible': 'h-102 overflow-clip'">
+        <div [ngClass]="readMore ? 'overflow-visible': 'h-102 overflow-clip'" style="word-wrap: break-word!important;">
           <div [innerHTML]="project?.content"></div>
         </div>
         <p class="my-2 text-sm text-blue-300 flex justify-start cursor-pointer" (click)="readMore = !readMore">Read {{readMore ? 'Less': 'More'}}</p>
