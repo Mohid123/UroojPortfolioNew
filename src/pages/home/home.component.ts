@@ -58,6 +58,12 @@ export class HomeComponent implements OnInit {
         '/assets/linkedin.svg'
       )
     );
+    this.matIconRegistry.addSvgIcon(
+      'github',
+      this.domSanitizer.bypassSecurityTrustResourceUrl(
+        '/assets/github.svg'
+      )
+    );
   }
 
   ngOnInit(): void {

@@ -14,14 +14,14 @@ import { MatIconModule } from '@angular/material/icon';
       <p class="text-xl font-semibold text-white">Urooj Murtaza.</p>
       <p class="text-sm font-semibold text-white">Data Scientist & Astronomer</p>
       <div class="flex justify-center gap-x-3 mt-4">
-          <a href="https://www.facebook.com/urooj.murtaza97" target="_blank">
-            <mat-icon>facebook</mat-icon>
+          <a href="https://github.com/uroojmurtaza" target="_blank">
+            <mat-icon svgIcon="github"></mat-icon>
           </a>
           <a href="https://www.linkedin.com/m/profile/in/urooj-murtaza-8b213a166" target="_blank">
             <mat-icon svgIcon="linkedin"></mat-icon>
           </a>
-          <a href="https://www.instagram.com/uroojmurtaza97/" target="_blank">
-            <mat-icon svgIcon="instagram"></mat-icon>
+          <a href="mailto:uroojmurtazaa@gmail.com" target="_blank">
+            <mat-icon>email</mat-icon>
           </a>
       </div>
       <p class="text-sm font-semibold mt-4 text-white">&copy; 2024 Urooj Murtaza. All Rights Reserved</p>
