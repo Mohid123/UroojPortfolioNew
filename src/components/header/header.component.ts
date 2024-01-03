@@ -41,9 +41,9 @@ import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
         <button [routerLink]="['/projects']" routerLinkActive="active" matTooltip="Archive" mat-icon-button aria-label="Example icon-button with share icon">
           <mat-icon>folder_zip</mat-icon>
         </button>
-        <button matTooltip="Resume" mat-icon-button aria-label="Example icon-button with share icon">
+        <!-- <button matTooltip="Resume" mat-icon-button aria-label="Example icon-button with share icon">
           <mat-icon>description</mat-icon>
-        </button>
+        </button> -->
         <!-- <button matTooltip="Featured Blogs & Articles" mat-icon-button aria-label="Example icon-button with share icon">
           <mat-icon>newspaper</mat-icon>
         </button> -->

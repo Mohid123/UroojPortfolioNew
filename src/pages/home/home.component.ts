@@ -30,10 +30,10 @@ import { BlogComponent } from '../../components/blog/blog.component';
   <section class="lg:mx-12 mx-2 mt-52">
     <app-intro-card></app-intro-card>
   </section>
-  <section class="lg:mt-64 mt-28 py-20">
+  <!-- <section class="lg:mt-64 mt-28 py-20">
     <app-quote-card></app-quote-card>
-  </section>
-  <section class="mt-14 lg:mx-12 mx-2">
+  </section> -->
+  <section class="lg:mt-64 mt-28 mx-2">
     <app-blog></app-blog>
   </section>
   <!-- <section class="mt-14 lg:mx-12 mx-2">

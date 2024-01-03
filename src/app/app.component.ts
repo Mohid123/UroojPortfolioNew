@@ -23,8 +23,6 @@ export class AppComponent {
           db.publicSectionData.clear()
           db.introSectionData.clear()
           db.quoteSectionData.clear()
-          document.location.reload();
-          console.log('Refresh after 12 seconds');
         })
       } catch (err) {
         console.error('Failed to refresh:', err);
