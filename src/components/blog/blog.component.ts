@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, DestroyRef, inject, signal } from '@angular/core';
 import { Firestore } from '@angular/fire/firestore';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
-import { addDoc, collection, doc, getDocs, updateDoc } from 'firebase/firestore';
+import { addDoc, collection, deleteDoc, doc, getDocs, updateDoc } from 'firebase/firestore';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialog } from '@angular/material/dialog';
@@ -11,6 +11,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { EditorConfig } from '@ckeditor/ckeditor5-core';
 import { GenericService } from '../../services/generic.service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-blog',
@@ -19,30 +20,53 @@ import { GenericService } from '../../services/generic.service';
     CommonModule,
     CKEditorModule,
     MatIconModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatProgressSpinnerModule
   ],
   template: `
   <h5 class="lg:text-5xl text-4xl font-semibold text-center text-white mb-5">
     My Projects <button *ngIf="gen.isLoggedIn()" (click)="openDialogAddOnly()"><mat-icon>add_circle</mat-icon></button>
   </h5>
-  <!-- <ckeditor [editor]="Editor" [config]="editorConfig"></ckeditor> -->
-  <div class="grid grid-cols-12 gap-6 text-white">
-    @for (project of projects(); track project.id; let index = $index) {
-      <div class="bg-[#1A2421] rounded-xl px-5 py-4 lg:col-span-4 md:col-span-6 col-span-full relative">
-        <button *ngIf="gen.isLoggedIn()" (click)="openDialog(project?.content, project?.id)" matTooltip="Edit card" mat-icon-button aria-label="Example icon-button with share icon" class="absolute -top-5 right-0 z-10">
-          <mat-icon class="p-4 rounded-full bg-gray-400 flex items-center justify-center">edit</mat-icon>
-        </button>
-        <mat-icon>verified</mat-icon>
-        <div [ngClass]="readMore ? 'overflow-visible': 'h-102 overflow-clip'" style="word-wrap: break-word!important;">
-          <div [innerHTML]="project?.content"></div>
+  @defer (when isVisible()) {
+    <div class="grid grid-cols-12 gap-6 text-white">
+      @for (project of projects(); track project.id; let index = $index) {
+        <div class="bg-[#1A2421] rounded-xl px-5 py-4 lg:col-span-4 md:col-span-6 col-span-full relative">
+          <button *ngIf="gen.isLoggedIn()" (click)="openDialog(project?.content, project?.id)" matTooltip="Edit card" mat-icon-button aria-label="Example icon-button with share icon" class="absolute -top-5 right-0 z-10">
+            <mat-icon class="p-4 rounded-full bg-gray-400 flex items-center justify-center">edit</mat-icon>
+          </button>
+          <button *ngIf="gen.isLoggedIn()" (click)="deleteProject(project?.id)" matTooltip="Delete card" mat-icon-button aria-label="Example icon-button with share icon" class="absolute -top-5 right-9 z-10">
+            <mat-icon class="p-4 rounded-full bg-red-400 flex items-center justify-center">delete</mat-icon>
+          </button>
+          <mat-icon>verified</mat-icon>
+          <div [ngClass]="project.readMore ? 'overflow-visible': 'overflow-clip h-102'" style="word-wrap: break-word!important;">
+            <div [innerHTML]="project?.content"></div>
+          </div>
+          <p
+            class="my-2 text-sm text-blue-300 flex justify-start cursor-pointer"
+            (click)="project.readMore = !project.readMore"
+          >
+            Read {{project.readMore ? 'Less': 'More'}}
+          </p>
+          <div class="flex justify-end">
+            <mat-icon class="my-3">workspace_premium</mat-icon>
+          </div>
         </div>
-        <p class="my-2 text-sm text-blue-300 flex justify-start cursor-pointer" (click)="readMore = !readMore">Read {{readMore ? 'Less': 'More'}}</p>
-        <div class="flex justify-end">
-          <mat-icon class="my-3">workspace_premium</mat-icon>
-        </div>
-      </div>
+      }
+    </div>
     }
-  </div>
+    @loading {
+      <div class="flex justify-center flex-col align-middle items-center py-28">
+        <mat-spinner [diameter]="40" color="primary"></mat-spinner>
+        <p class="py-2 text-center">Loading...</p>
+      </div>
+    } @placeholder {
+      <div class="flex justify-center flex-col align-middle items-center py-28">
+        <mat-spinner [diameter]="40" color="primary"></mat-spinner>
+        <p class="py-2 text-center text-white font-semibold">Loading...</p>
+      </div>
+    } @error {
+      Failed to load dependencies
+    }
   `,
   styleUrl: './blog.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -74,24 +98,28 @@ export class BlogComponent {
       ]
 		}
   };
-  public readMore: boolean = false;
+  public isVisible = signal<boolean>(false);
+
 
   constructor(public dialog: MatDialog, public gen: GenericService) {
     this.fetchFromFirestore()
   }
 
   async fetchFromFirestore() {
+    this.isVisible.set(false);
     const itemCollection = collection(this.firestore, 'Projects');
     let val = await getDocs(itemCollection);
     let projects: any = [];
     val.forEach(item => {
       let data = {
         id: item.id,
-        content: item.get('content')
+        content: item.get('content'),
+        readMore: false
       }
       projects.push(data)
     })
-    this.projects.set(projects)
+    this.projects.set(projects);
+    this.isVisible.set(true);
   }
 
   openDialog(content: any, id: string) {
@@ -130,6 +158,12 @@ export class BlogComponent {
         });
       }
     })
+  }
+
+  async deleteProject(id: string) {
+    await deleteDoc(doc(this.firestore, "Projects", id)).then(() => {
+      this.fetchFromFirestore();
+    });
   }
 }
 

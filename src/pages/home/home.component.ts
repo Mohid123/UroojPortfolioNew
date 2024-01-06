@@ -1,8 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { HeaderComponent } from '../../components/header/header.component';
 import { IntroCardComponent } from '../../components/intro-card/intro-card.component';
-import * as Aos from 'aos';
 import { QuoteCardComponent } from '../../components/quote-card/quote-card.component';
 import { PublicPagesComponent } from '../../components/public-pages/public-pages.component';
 import { MatIconRegistry } from '@angular/material/icon';
@@ -44,7 +43,7 @@ import { BlogComponent } from '../../components/blog/blog.component';
   styleUrl: './home.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
   constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {
     this.matIconRegistry.addSvgIcon(
       'instagram',
@@ -64,9 +63,5 @@ export class HomeComponent implements OnInit {
         '/assets/github.svg'
       )
     );
-  }
-
-  ngOnInit(): void {
-    Aos.init();
   }
 }
