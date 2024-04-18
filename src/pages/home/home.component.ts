@@ -32,7 +32,7 @@ import { BlogComponent } from '../../components/blog/blog.component';
   <!-- <section class="lg:mt-64 mt-28 py-20">
     <app-quote-card></app-quote-card>
   </section> -->
-  <section class="lg:mt-64 mt-28 mx-2">
+  <section class="lg:mt-32 mt-28 mx-2">
     <app-blog></app-blog>
   </section>
   <!-- <section class="mt-14 lg:mx-12 mx-2">
