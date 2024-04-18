@@ -26,7 +26,7 @@ import { BlogComponent } from '../../components/blog/blog.component';
   providers: [MatIconRegistry],
   template: `
   <app-header></app-header>
-  <section class="lg:mx-12 mx-2 mt-52">
+  <section class="lg:mx-12 mx-2 mt-36">
     <app-intro-card></app-intro-card>
   </section>
   <!-- <section class="lg:mt-64 mt-28 py-20">
