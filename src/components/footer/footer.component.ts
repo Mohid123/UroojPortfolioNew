@@ -14,7 +14,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   template: `
   <div class="mt-14 border-t border-white w-full pt-4 text-center text-white bg-[#F44336]">
       <p class="text-xl font-semibold text-white">Urooj Murtaza.</p>
-      <p class="text-sm font-semibold text-white">Data Scientist & Astronomer</p>
+      <p class="text-sm font-semibold text-white">Data Analyst & Astronomer</p>
       <div class="flex justify-center gap-x-3 mt-4">
           <a href="https://github.com/uroojmurtaza" target="_blank">
             <mat-icon svgIcon="github"></mat-icon>
